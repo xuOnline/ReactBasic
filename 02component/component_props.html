@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<script type="text/javascript" src="../js/react.development.js"></script>
+<script type="text/javascript" src="../js/react-dom.development.js"></script>
+<script type="text/javascript" src="../js/prop-types.js"></script>
+<script type="text/javascript" src="../js/babel.min.js"></script>
+<body>
+<div id="test1"></div>
+<div id="test2"></div>
+</body>
+<script type="text/babel">
+    //简单组件
+    function Person(props) {
+        return (<ul>
+                <li>姓名：{props.name}</li>
+                <li>年龄：{props.age}</li>
+                <li>性别：{props.sex}</li>
+                </ul>)
+    }
+    //定义参数默认值
+    Person.defaultProps={
+        age:18,
+        sex:'男'
+    }
+    //定义参数类型和是否必输
+    Person.propTypes ={
+        name:PropTypes.string.isRequired,
+        age:PropTypes.number,
+        sex:PropTypes.string
+    }
+    const tom = {
+        name:'张三',
+        age:22,
+        sex:'女'
+    }
+    //复杂组件
+    class Person2 extends React.Component {
+        render(){
+            return (<ul>
+                        <li>姓名：{this.props.name}</li>
+                        <li>年龄：{this.props.age}</li>
+                        <li>性别：{this.props.sex}</li>
+                    </ul>)
+        }
+
+    }
+    const jack = {
+        name:'jack',
+        age:22,
+    }
+    //渲染组件
+    //ReactDOM.render(<Person name = {tom.name} age = {tom.age} sex = {tom.sex}/>,document.getElementById('test1'))
+    ReactDOM.render(<Person {...tom}/>,document.getElementById('test1'))
+    ReactDOM.render(<Person {...jack}/>,document.getElementById('test2'))
+</script>
+</html>

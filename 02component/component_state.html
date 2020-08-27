@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<script type="text/javascript" src="../js/react.development.js"></script>
+<script type="text/javascript" src="../js/react-dom.development.js"></script>
+<script type="text/javascript" src="../js/babel.min.js"></script>
+<body>
+<div id="test1"></div>
+<div id="test2"></div>
+</body>
+<script type="text/babel">
+    //当要定义的主键有状态是定义复杂主键，若没有状态则定义简单主键
+    class MyCOmponent extends React.Component{
+        constructor(props) {
+            super(props);
+             this.state={
+                 isLike:false
+             }
+             this.handleClick = this.handleClick.bind(this);
+        }
+        handleClick(){
+            const isLike = !this.state.isLike;
+            this.setState({isLike})
+        }
+        render(){
+            const {isLike} = this.state;
+            return <h2 onClick={this.handleClick}>{isLike?'我喜欢你':'你喜欢我'}</h2>
+        }
+    }
+    //渲染组件
+    ReactDOM.render(<MyCOmponent/>,document.getElementById('test1'))
+</script>
+</html>
